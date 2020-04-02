@@ -1,1 +1,3 @@
-<pre>{{ estabelecimentos | json }}</pre>
+<app-estabelecimento
+  *ngFor="let estabelecimento of estabelecimentos"
+  [estabelecimento]="estabelecimento"></app-estabelecimento>
