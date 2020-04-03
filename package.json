@@ -2,8 +2,7 @@
   "name": "mercadinho",
   "version": "0.0.1",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
+    "start": "node server",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
