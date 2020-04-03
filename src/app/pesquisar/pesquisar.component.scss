@@ -1,0 +1,19 @@
+.pesquisar-collapse {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+}
+
+.input-pesquisar {
+  width: 112px;
+
+  @media (min-width: 576px) {
+    width: 200px;
+  }
+
+  @media (min-width: 768px) {
+    width: 300px;
+  }
+}

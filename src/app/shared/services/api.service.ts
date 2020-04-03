@@ -23,7 +23,7 @@ export class ApiService {
   private estabelecimentos = new BehaviorSubject<any>([]);
   private estabelecimentosFiltrados = new BehaviorSubject<any>([]);
 
-  private filtros = new BehaviorSubject<any>({});
+  private filtros = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {
     this.estabelecimentos
@@ -66,8 +66,14 @@ export class ApiService {
     return this.estabelecimentosFiltrados.asObservable();
   }
 
-  filtrarEstabelecimentos(estabelecimentos: any[], filtro: any): Array<any> {
-    return estabelecimentos;
+  filtrarEstabelecimentos(estabelecimentos: any[], filtro: string): Array<any> {
+    return estabelecimentos.filter(e => {
+      return (e.nome.toLowerCase().includes(filtro.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()));
+    });
+  }
+
+  pesquisarEstabelecimentos(termoPesquisa: string): void {
+    this.filtros.next(termoPesquisa);
   }
 
 }

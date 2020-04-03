@@ -1,1 +1,67 @@
-<p>pesquisar works!</p>
+<div class="d-none d-sm-block">
+  <div class="input-group">
+    <input
+      type="text"
+      class="form-control input-pesquisar"
+      placeholder="Pequisar..."
+      aria-label="Pequisar..."
+      aria-describedby="pesquisarBtn"
+      (click)="abrirModal(content)"
+      [(ngModel)]="termoPesquisa"
+      (ngModelChange)="pesquisar()"
+      (keydown.enter)="fecharModal()">
+    <div class="input-group-append">
+      <span
+        class="input-group-text"
+        id="pesquisarBtn">
+        <span class="sr-only">Pesquisar</span>
+        <span class="icon-search"></span>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="d-block d-sm-none mt-2">
+  <button
+    class="btn btn-light"
+    type="button"
+    (click)="abrirModal(content)">
+    <span class="icon-search"></span>
+  </button>
+</div>
+
+<ng-template
+  #content
+  let-modal>
+  <div class="modal-body">
+    <div class="mb-4">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control input-pesquisar"
+          placeholder="Pequisar..."
+          aria-label="Pequisar..."
+          aria-describedby="pesquisarBtn"
+          [(ngModel)]="termoPesquisa"
+          (ngModelChange)="pesquisar()"
+          (keydown.enter)="fecharModal()">
+        <div class="input-group-append">
+          <span
+            class="input-group-text"
+            id="pesquisarBtn">
+            <span class="sr-only">Pesquisar</span>
+            <span class="icon-search"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary">Comidas</button>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close()">
+      Fechar
+    </button>
+  </div>
+</ng-template>

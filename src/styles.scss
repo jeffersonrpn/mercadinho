@@ -5,3 +5,36 @@
 
 // Carrega ícones
 @import "assets/icons.scss";
+
+
+.navbar-brand {
+  margin-right: 0;
+}
+
+.modal-backdrop {
+  top: 60px;
+}
+
+.modal {
+  top: 60px;
+}
+
+.modal-dialog {
+  max-width: none;
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+}
+.modal-content {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
