@@ -17,8 +17,8 @@ import { Estabelecimento } from '../models/estabelecimento.model';
 })
 export class ApiService {
 
-  private url = 'https://spreadsheets.google.com/feeds/cells/1EccD5ZVHONpymm_ZtGv7RFxdMAHumcBRnn5NfFunOUo/1/public/full?alt=json';
-  private qtdColunas = 7;
+  private url = 'https://spreadsheets.google.com/feeds/cells/1PACqUmv1LzRhw6qria8H3yj2fjkGt9MpHvdOcQhnCb0/2/public/full?alt=json';
+  private qtdColunas = 13;
 
   private estabelecimentos = new BehaviorSubject<any>([]);
   private estabelecimentosFiltrados = new BehaviorSubject<any>([]);
@@ -47,16 +47,16 @@ export class ApiService {
           const estabelecimentos = [];
           if (sheet && sheet.length > 0) {
             for (let i = this.qtdColunas; i < sheet.length; i = i + this.qtdColunas) {
-                const url = sheet[i].gs$cell.inputValue;
-                const nome = sheet[i + 1].gs$cell.inputValue;
-                const contato = sheet[i + 2].gs$cell.inputValue;
-                const cidade = sheet[i + 3].gs$cell.inputValue;
-                const uf = sheet[i + 4].gs$cell.inputValue;
-                const endereco = sheet[i + 5].gs$cell.inputValue;
-                const categoria = sheet[i + 6].gs$cell.inputValue;
+              const timestamp = sheet[i].gs$cell.inputValue;
+              const url = sheet[i + 1].gs$cell.inputValue;
+              const nome = sheet[i + 2].gs$cell.inputValue;
+              const contato = sheet[i + 5].gs$cell.inputValue;
+              const cidade = sheet[i + 10].gs$cell.inputValue;
+              const uf = sheet[i + 11].gs$cell.inputValue;
+              const categoria = sheet[i + 12].gs$cell.inputValue;
 
-                const estabelecimento = new Estabelecimento(url, nome, contato, cidade, uf, endereco, categoria);
-                estabelecimentos.push(estabelecimento);
+              const estabelecimento = new Estabelecimento(timestamp, url, nome, contato, cidade, uf, categoria);
+              estabelecimentos.push(estabelecimento);
             }
           }
           return estabelecimentos;
