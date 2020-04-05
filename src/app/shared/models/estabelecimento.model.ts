@@ -19,4 +19,8 @@ export class Estabelecimento {
     this.img = img;
   }
 
+  getImg(): string {
+    return 'https://res.cloudinary.com/jeffersonrpn/image/upload/mercadinho/' + this.img;
+  }
+
 }
