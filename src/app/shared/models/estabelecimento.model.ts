@@ -6,8 +6,9 @@ export class Estabelecimento {
   public cidade;
   public uf;
   public categoria;
+  public img;
 
-  constructor(timestamp, url, nome, contato, cidade, uf, categoria) {
+  constructor(timestamp, url, nome, contato, cidade, uf, categoria, img) {
     this.timestamp = timestamp;
     this.url = url;
     this.nome = nome;
@@ -15,6 +16,7 @@ export class Estabelecimento {
     this.cidade = cidade;
     this.uf = uf;
     this.categoria = categoria;
+    this.img = img;
   }
 
 }

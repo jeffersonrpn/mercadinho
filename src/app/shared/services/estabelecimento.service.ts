@@ -18,7 +18,7 @@ import { Estabelecimento } from '../models/estabelecimento.model';
 export class EstabelecimentoService {
 
   private url = 'https://spreadsheets.google.com/feeds/cells/1PACqUmv1LzRhw6qria8H3yj2fjkGt9MpHvdOcQhnCb0/2/public/full?alt=json';
-  private qtdColunas = 13;
+  private qtdColunas = 14;
 
   private estabelecimentos = new BehaviorSubject<any>([]);
   private estabelecimentosFiltrados = new BehaviorSubject<any>([]);
@@ -54,8 +54,9 @@ export class EstabelecimentoService {
               const cidade = sheet[i + 10].gs$cell.inputValue;
               const uf = sheet[i + 11].gs$cell.inputValue;
               const categoria = sheet[i + 12].gs$cell.inputValue;
+              const img = sheet[i + 13].gs$cell.inputValue;
 
-              const estabelecimento = new Estabelecimento(timestamp, url, nome, contato, cidade, uf, categoria);
+              const estabelecimento = new Estabelecimento(timestamp, url, nome, contato, cidade, uf, categoria, img);
               estabelecimentos.push(estabelecimento);
             }
           }
