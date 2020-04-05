@@ -13,6 +13,7 @@ import { PesquisarComponent } from './pesquisar/pesquisar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DepoimentosComponent } from './depoimentos/depoimentos.component';
 import { DepoimentoComponent } from './depoimento/depoimento.component';
+import { VoluntariosComponent } from './voluntarios/voluntarios.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DepoimentoComponent } from './depoimento/depoimento.component';
     PesquisarComponent,
     NavbarComponent,
     DepoimentosComponent,
-    DepoimentoComponent
+    DepoimentoComponent,
+    VoluntariosComponent
   ],
   imports: [
     BrowserModule,

@@ -2,13 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, Observable } from 'rxjs';
-import {
-  switchMap,
-  map,
-  tap,
-  debounceTime,
-  distinctUntilChanged
-} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+
 import { Depoimento } from '../models/depoimento.model';
 
 
