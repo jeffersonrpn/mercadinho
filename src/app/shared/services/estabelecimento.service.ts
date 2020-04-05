@@ -15,7 +15,7 @@ import { Estabelecimento } from '../models/estabelecimento.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class EstabelecimentoService {
 
   private url = 'https://spreadsheets.google.com/feeds/cells/1PACqUmv1LzRhw6qria8H3yj2fjkGt9MpHvdOcQhnCb0/2/public/full?alt=json';
   private qtdColunas = 13;
@@ -30,7 +30,7 @@ export class ApiService {
       .pipe(
         switchMap(estabelecimentos => this.filtros.pipe(
           debounceTime(400),
-          map(filtros => this.filtrarEstabelecimentos(estabelecimentos, filtros))
+          map(filtros => this.filtrar(estabelecimentos, filtros))
         ))
         // tap(estabelecimentos => {
         //   return estabelecimentos.sort((a, b) => 1);
@@ -38,7 +38,7 @@ export class ApiService {
       ).subscribe(data => this.estabelecimentosFiltrados.next(data));
   }
 
-  getEstabelecimentos(): Observable<any> {
+  get(): Observable<any> {
     this.http
       .get<any>(this.url)
       .pipe(
@@ -66,13 +66,13 @@ export class ApiService {
     return this.estabelecimentosFiltrados.asObservable();
   }
 
-  filtrarEstabelecimentos(estabelecimentos: any[], filtro: string): Array<any> {
+  filtrar(estabelecimentos: any[], filtro: string): Array<any> {
     return estabelecimentos.filter(e => {
       return (e.nome.toLowerCase().includes(filtro.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()));
     });
   }
 
-  pesquisarEstabelecimentos(termoPesquisa: string): void {
+  pesquisar(termoPesquisa: string): void {
     this.filtros.next(termoPesquisa);
   }
 

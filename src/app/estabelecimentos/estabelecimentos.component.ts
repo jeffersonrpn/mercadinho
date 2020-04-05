@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ApiService } from '../shared/services/api.service';
+import { EstabelecimentoService } from '../shared/services/estabelecimento.service';
 
 @Component({
   selector: 'app-estabelecimentos',
@@ -15,15 +15,15 @@ export class EstabelecimentosComponent implements OnInit, OnDestroy {
   public estabelecimentos = [];
   private unsubscribe = new Subject();
 
-  constructor(private apiService: ApiService) { }
+  constructor(private estabelecimentoService: EstabelecimentoService) { }
 
   ngOnInit(): void {
     this.getEstabelecimentos();
   }
 
   getEstabelecimentos() {
-    this.apiService
-      .getEstabelecimentos()
+    this.estabelecimentoService
+      .get()
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(estabelecimentos => {
         this.estabelecimentos = estabelecimentos;

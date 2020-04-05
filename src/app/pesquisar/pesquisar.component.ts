@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ApiService } from '../shared/services/api.service';
+import { EstabelecimentoService } from '../shared/services/estabelecimento.service';
 
 @Component({
   selector: 'app-pesquisar',
@@ -15,7 +15,7 @@ export class PesquisarComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private apiService: ApiService) { }
+    private estabelecimentoService: EstabelecimentoService) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +31,7 @@ export class PesquisarComponent implements OnInit {
   }
 
   pesquisar() {
-    this.apiService.pesquisarEstabelecimentos(this.termoPesquisa);
+    this.estabelecimentoService.pesquisar(this.termoPesquisa);
   }
 
 }

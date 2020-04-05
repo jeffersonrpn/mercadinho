@@ -11,6 +11,8 @@ import { EstabelecimentosComponent } from './estabelecimentos/estabelecimentos.c
 import { EstabelecimentoComponent } from './estabelecimento/estabelecimento.component';
 import { PesquisarComponent } from './pesquisar/pesquisar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DepoimentosComponent } from './depoimentos/depoimentos.component';
+import { DepoimentoComponent } from './depoimento/depoimento.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     EstabelecimentosComponent,
     EstabelecimentoComponent,
     PesquisarComponent,
-    NavbarComponent
+    NavbarComponent,
+    DepoimentosComponent,
+    DepoimentoComponent
   ],
   imports: [
     BrowserModule,
