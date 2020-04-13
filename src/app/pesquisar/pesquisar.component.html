@@ -1,32 +1,37 @@
-<div class="d-none d-sm-block">
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span
-        class="input-group-text"
-        id="pesquisarBtn">
-        <span class="sr-only">Pesquisar</span>
-        <span class="icon-search"></span>
-      </span>
+<div [ngClass]="{ 'pesquisar-input-wrapper': true, 'pesquisar-input-wrapper-hide': !exibirBtnPesquisa }">
+  <div class="d-none d-sm-block">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span
+          class="input-group-text"
+          id="pesquisarBtn">
+          <span class="sr-only">Pesquisar</span>
+          <span class="icon-search"></span>
+        </span>
+      </div>
+      <input
+        type="text"
+        class="form-control form-control-lg input-pesquisar"
+        placeholder="Pequisar..."
+        aria-label="Pequisar..."
+        aria-describedby="pesquisarBtn"
+        (click)="abrirModal(content)"
+        [(ngModel)]="termoPesquisa"
+        (ngModelChange)="pesquisar()"
+        (keydown.enter)="fecharModal()">
     </div>
-    <input
-      type="text"
-      class="form-control form-control-lg input-pesquisar"
-      placeholder="Pequisar..."
-      aria-label="Pequisar..."
-      aria-describedby="pesquisarBtn"
-      (click)="abrirModal(content)"
-      [(ngModel)]="termoPesquisa"
-      (ngModelChange)="pesquisar()"
-      (keydown.enter)="fecharModal()">
   </div>
 </div>
-<div class="d-block d-sm-none mt-2">
-  <button
-    class="btn btn-light"
-    type="button"
-    (click)="abrirModal(content)">
-    <span class="icon-search"></span>
-  </button>
+
+<div [ngClass]="{ 'pesquisar-btn-wrapper': true, 'pesquisar-btn-wrapper-hide': !exibirBtnPesquisa }">
+  <div class="d-block d-sm-none mt-2">
+    <button
+      class="btn btn-light"
+      type="button"
+      (click)="abrirModal(content)">
+      <span class="icon-search"></span>
+    </button>
+  </div>
 </div>
 
 <ng-template

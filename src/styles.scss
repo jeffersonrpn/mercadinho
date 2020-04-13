@@ -44,6 +44,18 @@ body {
 .modal-content {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
+  animation-name: animationPop;
+  animation-duration: 0.3s;
+}
+.navbar-collapse {
+  animation-name: animationPop;
+  animation-duration: 0.3s;
+}
+
+@keyframes animationPop {
+  0%   {transform: scale(0.5)}
+  75%  {transform: scale(1.1)}
+  100% {transform: scale(1)}
 }
 
 .intro {

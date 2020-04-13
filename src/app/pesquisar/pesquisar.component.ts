@@ -12,25 +12,37 @@ import { EstabelecimentoService } from '../shared/services/estabelecimento.servi
 export class PesquisarComponent implements OnInit {
 
   public termoPesquisa: string;
+  public exibirBtnPesquisa: boolean;
 
   constructor(
     private modalService: NgbModal,
     private estabelecimentoService: EstabelecimentoService) { }
 
   ngOnInit(): void {
+    this.exibirBtnPesquisa = true;
   }
 
   abrirModal(content) {
     if (!this.modalService.hasOpenModals()) {
-      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+      this.exibirBtnPesquisa = false;
+      this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
+        .result
+        .then(result => {
+          this.exibirBtnPesquisa = true;
+        })
+        .catch(err => {
+          this.exibirBtnPesquisa = true;
+        });
     }
   }
 
   fecharModal() {
+    this.exibirBtnPesquisa = true;
     this.modalService.dismissAll();
   }
 
   pesquisar() {
+    this.exibirBtnPesquisa = true;
     this.estabelecimentoService.pesquisar(this.termoPesquisa);
   }
 

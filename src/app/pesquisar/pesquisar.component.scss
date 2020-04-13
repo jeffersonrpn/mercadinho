@@ -17,3 +17,25 @@
     width: 300px;
   }
 }
+
+.pesquisar-btn-wrapper {
+  transition: transform .2s ease-out, opacity .2s ease-out;
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.pesquisar-btn-wrapper-hide {
+  transform: translateY(50px) scale(1.5);
+  opacity: 0;
+}
+
+.pesquisar-input-wrapper {
+  transition: transform .2s ease-out, opacity .2s ease-out;
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.pesquisar-input-wrapper-hide {
+  transform: translateY(80px) scale(2);
+  opacity: 0;
+}
