@@ -1,3 +1,6 @@
-<app-depoimento
-  *ngFor="let depoimento of depoimentos"
-  [depoimento]="depoimento"></app-depoimento>
+<div class="depoimentos">
+  <div
+    *ngFor="let depoimento of depoimentos">
+    <app-depoimento [depoimento]="depoimento"></app-depoimento>
+  </div>
+</div>
