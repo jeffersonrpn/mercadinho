@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com" data-name="Layer 1">
+ <defs>
+  <style>
+    .cls-4, .cls-5 {
+        stroke: #59595b;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 20px;
+      }
+      .cls-5 {
+        fill: #f1592b;
+        fill-rule: evenodd;
+      }
+      .cls-4 {
+        fill: none;
+      }
+  </style>
+  </defs>
+  <g class="layer">
+    <title>Layer 1</title>
+    <g id="tudo">
+    <line class="cls-4" id="svg_18" x1="71.201059" x2="35.571556" y1="243.462272" y2="243.462272"/>
+    <path class="cls-5" d="m265.050972,200.991008l0,0a40.788856,40.788856 0 0 0 -57.612881,0l0,0l-7.21562,7.21562l-7.103465,-7.21562l0,0a40.788856,40.788856 0 0 0 -57.612881,0l0,0a40.714094,40.714094 0 0 0 0,57.612856l0,0l7.178252,7.215645l52.079643,52.079618a7.888578,7.888578 0 0 0 11.215999,0l52.079643,-52.079618l7.21562,-7.215645l0,0a40.788856,40.788856 0 0 0 -0.224311,-57.612856l0.000001,0z" fill="black" id="svg_19"/>
+    <line class="cls-4" id="svg_20" x1="200.222471" x2="200.222471" y1="114.440885" y2="78.811382"/>
+    <line class="cls-4" id="svg_21" x1="291.445957" x2="316.681968" y1="152.238812" y2="127.040169"/>
+    <line class="cls-4" id="svg_22" x1="329.243883" x2="364.910781" y1="243.462272" y2="243.462272"/>
+    <line class="cls-4" id="svg_23" x1="108.998986" x2="83.800368" y1="152.238812" y2="127.040169"/>
+    </g>
+  </g>
+</svg>
