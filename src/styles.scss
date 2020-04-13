@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap');
+
 // Carrega Bootstrap
 @import "../node_modules/bootstrap/scss/functions";
 @import "assets/bootstrap/variables";
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import "assets/bootstrap/overhide";
 
 // Carrega ícones
 @import "assets/icons.scss";
 
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
 
 .navbar-brand {
   margin-right: 0;

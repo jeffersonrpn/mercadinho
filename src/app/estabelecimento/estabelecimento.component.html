@@ -1,6 +1,10 @@
-<div class="estabelecimento">
-  <img [src]="estabelecimento.getImg()" [alt]="estabelecimento.nome" width="100%">
-  <div class="text-center">
-    {{ estabelecimento.nome }}
+<div class="loja">
+  <div class="marca rounded">
+    <img
+      [src]="estabelecimento.getImg()"
+      [alt]="estabelecimento.nome"
+      width="100%"
+      class="rounded">
   </div>
+  <div class="loja-titulo">{{ estabelecimento.nome }}</div>
 </div>
