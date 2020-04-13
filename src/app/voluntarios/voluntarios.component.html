@@ -1,3 +1,5 @@
-<ul>
-  <li *ngFor="let voluntario of voluntarios">{{ voluntario.nome }}</li>
-</ul>
+<h1 class="text-center">Equipe Solidária</h1>
+<div class="intro">O professor João Arthur Brunet é idealizador do projeto, mas a iniciativa Mercado Solidário só é possível graças a uma equipe solidária, formada por mais de 100 alunos do curso de Ciência da Computação da Universidade Federal de Campina Grande, além de alunos e profissionais de outras áreas e instituições, que oferecem voluntariamente serviço gratuito de produção de sites de vendas de produtos para os pequenos empresários e autônomos.</div>
+<div class="voluntarios">
+  <div *ngFor="let voluntario of voluntarios">{{ voluntario.nome }}</div>
+</div>
