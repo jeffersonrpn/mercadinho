@@ -1,16 +1,6 @@
 <div class="d-none d-sm-block">
   <div class="input-group">
-    <input
-      type="text"
-      class="form-control input-pesquisar"
-      placeholder="Pequisar..."
-      aria-label="Pequisar..."
-      aria-describedby="pesquisarBtn"
-      (click)="abrirModal(content)"
-      [(ngModel)]="termoPesquisa"
-      (ngModelChange)="pesquisar()"
-      (keydown.enter)="fecharModal()">
-    <div class="input-group-append">
+    <div class="input-group-prepend">
       <span
         class="input-group-text"
         id="pesquisarBtn">
@@ -18,6 +8,16 @@
         <span class="icon-search"></span>
       </span>
     </div>
+    <input
+      type="text"
+      class="form-control form-control-lg input-pesquisar"
+      placeholder="Pequisar..."
+      aria-label="Pequisar..."
+      aria-describedby="pesquisarBtn"
+      (click)="abrirModal(content)"
+      [(ngModel)]="termoPesquisa"
+      (ngModelChange)="pesquisar()"
+      (keydown.enter)="fecharModal()">
   </div>
 </div>
 <div class="d-block d-sm-none mt-2">
@@ -35,16 +35,7 @@
   <div class="modal-body">
     <div class="mb-4">
       <div class="input-group">
-        <input
-          type="text"
-          class="form-control input-pesquisar"
-          placeholder="Pequisar..."
-          aria-label="Pequisar..."
-          aria-describedby="pesquisarBtn"
-          [(ngModel)]="termoPesquisa"
-          (ngModelChange)="pesquisar()"
-          (keydown.enter)="fecharModal()">
-        <div class="input-group-append">
+        <div class="input-group-prepend">
           <span
             class="input-group-text"
             id="pesquisarBtn">
@@ -52,6 +43,15 @@
             <span class="icon-search"></span>
           </span>
         </div>
+        <input
+          type="text"
+          class="form-control form-control-lg input-pesquisar"
+          placeholder="Pequisar..."
+          aria-label="Pequisar..."
+          aria-describedby="pesquisarBtn"
+          [(ngModel)]="termoPesquisa"
+          (ngModelChange)="pesquisar()"
+          (keydown.enter)="fecharModal()">
       </div>
     </div>
     <button class="btn btn-primary">Comidas</button>
