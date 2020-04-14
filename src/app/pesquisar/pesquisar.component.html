@@ -38,7 +38,7 @@
   #content
   let-modal>
   <div class="modal-body">
-    <div class="mb-4">
+    <div class="mb-2">
       <div class="input-group">
         <div class="input-group-prepend">
           <span
@@ -58,6 +58,11 @@
           (ngModelChange)="pesquisar()"
           (keydown.enter)="fecharModal()">
       </div>
+    </div>
+    <div class="mb-4">
+      <select class="form-control form-control-lg">
+        <option *ngFor="let cidade of cidades">{{ cidade.nome }} - {{ cidade.uf }}</option>
+      </select>
     </div>
     <button class="btn btn-primary">Comidas</button>
   </div>

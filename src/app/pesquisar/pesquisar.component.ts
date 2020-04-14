@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import { EstabelecimentoService } from '../shared/services/estabelecimento.service';
+import { Cidade } from '../shared/models/cidade.model';
 
 @Component({
   selector: 'app-pesquisar',
@@ -13,6 +17,8 @@ export class PesquisarComponent implements OnInit {
 
   public termoPesquisa: string;
   public exibirBtnPesquisa: boolean;
+  public cidades: Cidade[];
+  private unsubscribe = new Subject();
 
   constructor(
     private modalService: NgbModal,
@@ -20,6 +26,16 @@ export class PesquisarComponent implements OnInit {
 
   ngOnInit(): void {
     this.exibirBtnPesquisa = true;
+    this.getCidades();
+  }
+
+  getCidades() {
+    this.estabelecimentoService
+      .getCidades()
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(cidades => {
+        this.cidades = cidades;
+      });
   }
 
   abrirModal(content) {

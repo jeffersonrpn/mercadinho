@@ -11,6 +11,7 @@ import {
 } from 'rxjs/operators';
 
 import { Estabelecimento } from '../models/estabelecimento.model';
+import { Cidade } from '../models/cidade.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,11 @@ export class EstabelecimentoService {
 
   private url = 'https://spreadsheets.google.com/feeds/cells/1PACqUmv1LzRhw6qria8H3yj2fjkGt9MpHvdOcQhnCb0/2/public/full?alt=json';
   private qtdColunas = 14;
+  private valorVazio = '-'; // Importante para filtrar células vazias
 
   private estabelecimentos = new BehaviorSubject<any>([]);
   private estabelecimentosFiltrados = new BehaviorSubject<any>([]);
+  private cidades = new BehaviorSubject<any>([]);
 
   private filtros = new BehaviorSubject<string>('');
 
@@ -45,6 +48,7 @@ export class EstabelecimentoService {
         map(data => {
           const sheet = data.feed.entry;
           const estabelecimentos = [];
+          let cidades = [];
           if (sheet && sheet.length > 0) {
             for (let i = this.qtdColunas; i < sheet.length; i = i + this.qtdColunas) {
               const timestamp = sheet[i].gs$cell.inputValue;
@@ -56,15 +60,28 @@ export class EstabelecimentoService {
               const categoria = sheet[i + 12].gs$cell.inputValue;
               const img = sheet[i + 13].gs$cell.inputValue;
 
-              const estabelecimento = new Estabelecimento(timestamp, url, nome, contato, cidade, uf, categoria, img);
-              estabelecimentos.push(estabelecimento);
+              estabelecimentos.push(new Estabelecimento(timestamp, url, nome, contato, cidade, uf, categoria, img));
+              if (cidade !== this.valorVazio) {
+                cidades.push(new Cidade(cidade, uf));
+              }
             }
           }
-          return estabelecimentos;
+          // Remove cidades duplicadas
+          cidades = cidades
+            .filter((item, i, arr) => arr
+              .findIndex(t => (t.nome === item.nome && t.uf === item.uf)) === i);
+          return { estabelecimentos, cidades };
         }))
-      .subscribe(data => this.estabelecimentos.next(data));
+      .subscribe(data => {
+        this.estabelecimentos.next(data.estabelecimentos);
+        this.cidades.next(data.cidades);
+      });
 
     return this.estabelecimentosFiltrados.asObservable();
+  }
+
+  getCidades() {
+    return this.cidades.asObservable();
   }
 
   filtrar(estabelecimentos: any[], filtro: string): Array<any> {
