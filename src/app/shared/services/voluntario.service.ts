@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 
 import { Voluntario } from '../models/voluntario.model';
 
-
 @Injectable({
   providedIn: 'root'
 })
