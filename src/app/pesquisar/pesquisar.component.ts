@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -21,6 +22,7 @@ export class PesquisarComponent implements OnInit {
   private unsubscribe = new Subject();
 
   constructor(
+    private router: Router,
     private modalService: NgbModal,
     private estabelecimentoService: EstabelecimentoService) { }
 
@@ -61,6 +63,11 @@ export class PesquisarComponent implements OnInit {
 
   pesquisar() {
     this.estabelecimentoService.pesquisar(this.termoPesquisa);
+  }
+
+  irParaResultados() {
+    this.router.navigate(['/lojas']);
+    this.fecharModal();
   }
 
 }
