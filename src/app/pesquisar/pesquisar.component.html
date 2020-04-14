@@ -16,6 +16,7 @@
         aria-label="Pequisar..."
         aria-describedby="pesquisarBtn"
         (click)="abrirModal(content)"
+        (keydown)="abrirModal(content)"
         [(ngModel)]="termoPesquisa"
         (ngModelChange)="pesquisar()"
         (keydown.enter)="fecharModal()">
