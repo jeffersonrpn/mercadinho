@@ -1,4 +1,4 @@
-<p>
+<p [hidden]="estabelecimentos.length == 0">
   <strong>{{ estabelecimentos.length }}</strong>
   estabelecimentos
 </p>
@@ -9,4 +9,8 @@
     <app-estabelecimento [estabelecimento]="estabelecimento"></app-estabelecimento>
   </div>
 </div>
-<div *ngIf="!estabelecimentos">Nenhum resultado encontrado</div>
+<div
+  class="sem-resultados"
+  [hidden]="estabelecimentos.length > 0">
+  <strong>Nenhum resultado encontrado.</strong>
+</div>

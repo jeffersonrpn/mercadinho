@@ -42,8 +42,6 @@ export class PesquisarComponent implements OnInit {
 
   abrirModal(content) {
     if (!this.modalService.hasOpenModals()) {
-      console.log('abriu');
-
       this.exibirBtnPesquisa = false;
       this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
         .result
