@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { EstabelecimentoService } from '../shared/services/estabelecimento.service';
+import { CarregandoService } from '../shared/services/carregando.service';
 
 @Component({
   selector: 'app-estabelecimentos',
@@ -15,7 +16,9 @@ export class EstabelecimentosComponent implements OnInit, OnDestroy {
   public estabelecimentos = [];
   private unsubscribe = new Subject();
 
-  constructor(private estabelecimentoService: EstabelecimentoService) { }
+  constructor(
+    private estabelecimentoService: EstabelecimentoService,
+    public carregandoService: CarregandoService) { }
 
   ngOnInit(): void {
     this.getEstabelecimentos();

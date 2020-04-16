@@ -12,6 +12,7 @@ import {
 
 import { Estabelecimento } from '../models/estabelecimento.model';
 import { Cidade } from '../models/cidade.model';
+import { CarregandoService } from './carregando.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,9 @@ export class EstabelecimentoService {
 
   private filtros = new BehaviorSubject<string>('');
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private carregandoService: CarregandoService) {
     this.estabelecimentos
       .pipe(
         switchMap(estabelecimentos => this.filtros.pipe(
@@ -38,10 +41,14 @@ export class EstabelecimentoService {
         // tap(estabelecimentos => {
         //   return estabelecimentos.sort((a, b) => 1);
         // })
-      ).subscribe(data => this.estabelecimentosFiltrados.next(data));
+      ).subscribe(data => {
+        this.carregandoService.estaCarregando = false;
+        this.estabelecimentosFiltrados.next(data);
+      });
   }
 
   get(): Observable<any> {
+    this.carregandoService.estaCarregando = true;
     this.http
       .get<any>(this.url)
       .pipe(
@@ -73,6 +80,7 @@ export class EstabelecimentoService {
           return { estabelecimentos, cidades };
         }))
       .subscribe(data => {
+        this.carregandoService.estaCarregando = false;
         this.estabelecimentos.next(data.estabelecimentos);
         this.cidades.next(data.cidades);
       });
@@ -91,6 +99,7 @@ export class EstabelecimentoService {
   }
 
   pesquisar(termoPesquisa: string): void {
+    this.carregandoService.estaCarregando = true;
     this.filtros.next(termoPesquisa);
   }
 

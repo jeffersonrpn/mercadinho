@@ -1,3 +1,4 @@
+<div class="loader" [hidden]="!carregandoService.estaCarregando">Carregando...</div>
 <p [hidden]="estabelecimentos.length == 0">
   <strong>{{ estabelecimentos.length }}</strong>
   estabelecimentos
@@ -11,6 +12,6 @@
 </div>
 <div
   class="sem-resultados"
-  [hidden]="estabelecimentos.length > 0">
+  [hidden]="estabelecimentos.length > 0 || carregandoService.estaCarregando">
   <strong>Nenhum resultado encontrado.</strong>
 </div>

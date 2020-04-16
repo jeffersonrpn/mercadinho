@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { DepoimentoService } from '../shared/services/depoimento.service';
+import { CarregandoService } from '../shared/services/carregando.service';
 
 @Component({
   selector: 'app-depoimentos',
@@ -15,7 +16,9 @@ export class DepoimentosComponent implements OnInit, OnDestroy {
   public depoimentos = [];
   private unsubscribe = new Subject();
 
-  constructor(private depoimentosService: DepoimentoService) { }
+  constructor(
+    private depoimentosService: DepoimentoService,
+    public carregandoService: CarregandoService) { }
 
   ngOnInit(): void {
     this.getDepoimentos();

@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Depoimento } from '../models/depoimento.model';
+import { CarregandoService } from './carregando.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,12 @@ export class DepoimentoService {
 
   private depoimentos = new BehaviorSubject<any>([]);
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private carregandoService: CarregandoService) {}
 
   get(): Observable<any> {
+    this.carregandoService.estaCarregando = true;
     this.http
       .get<any>(this.url)
       .pipe(
@@ -36,7 +40,10 @@ export class DepoimentoService {
           }
           return depoimentos;
         }))
-      .subscribe(data => this.depoimentos.next(data));
+      .subscribe(data => {
+        this.carregandoService.estaCarregando = false;
+        this.depoimentos.next(data);
+      });
 
     return this.depoimentos.asObservable();
   }
