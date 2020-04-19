@@ -16,9 +16,12 @@ import { Cidade } from '../shared/models/cidade.model';
 })
 export class PesquisarComponent implements OnInit {
 
+  public filtros: any;
   public termoPesquisa: string;
+  public cidadeSelecionada: string;
   public exibirBtnPesquisa: boolean;
   public cidades: Cidade[];
+  public cidadeFiltro: Cidade;
   private unsubscribe = new Subject();
 
   constructor(
@@ -28,6 +31,13 @@ export class PesquisarComponent implements OnInit {
 
   ngOnInit(): void {
     this.exibirBtnPesquisa = true;
+    this.filtros = {
+      termo: '',
+      cidade: new Cidade('-', '-')
+    };
+    this.termoPesquisa = '';
+    this.cidadeSelecionada = '-,-';
+    this.cidadeFiltro = new Cidade('-', '-');
     this.getCidades();
   }
 
@@ -60,12 +70,22 @@ export class PesquisarComponent implements OnInit {
   }
 
   pesquisar() {
-    this.estabelecimentoService.pesquisar(this.termoPesquisa);
+    this.filtros = {
+      termo: this.termoPesquisa,
+      cidade: this.cidadeFiltro
+    };
+    this.estabelecimentoService.pesquisar(this.filtros);
   }
 
   irParaResultados() {
     this.router.navigate(['/lojas']);
     this.fecharModal();
+  }
+
+  onChangeCidade() {
+    const cidade = this.cidadeSelecionada.split(',');
+    this.cidadeFiltro = new Cidade(cidade[0], cidade[1]);
+    this.pesquisar();
   }
 
 }

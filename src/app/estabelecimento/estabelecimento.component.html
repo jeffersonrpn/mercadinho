@@ -7,5 +7,5 @@
       class="rounded">
   </div>
   <div class="loja-titulo">{{ estabelecimento.nome }}</div>
-  <div class="loja-subtitulo text-muted" *ngIf="estabelecimento.cidade !== '-'">{{ estabelecimento.cidade }} - {{ estabelecimento.uf }}</div>
+  <div class="loja-subtitulo text-muted" *ngIf="estabelecimento.cidade.nome !== '-'">{{ estabelecimento.cidade.nome }} - {{ estabelecimento.cidade.uf }}</div>
 </div>

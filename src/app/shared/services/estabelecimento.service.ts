@@ -34,10 +34,11 @@ export class EstabelecimentoService {
     private carregandoService: CarregandoService) {
     this.estabelecimentos
       .pipe(
-        switchMap(estabelecimentos => this.filtros.pipe(
-          debounceTime(400),
-          map(filtros => this.filtrar(estabelecimentos, filtros))
-        )),
+        switchMap(estabelecimentos =>
+          this.filtros.pipe(
+            debounceTime(400),
+            map(filtros => this.filtrar(estabelecimentos, filtros))
+          )),
         tap(estabelecimentos => {
           return estabelecimentos.sort((a, b) => this.ordenar(a, b));
         })
@@ -101,19 +102,32 @@ export class EstabelecimentoService {
     return this.cidades.asObservable();
   }
 
-  filtrar(estabelecimentos: any[], filtro: string): Array<any> {
+  filtrar(estabelecimentos: any[], filtros: any): Array<any> {
+    const termo = filtros.termo;
+    const cidade = filtros.cidade;
+
     return estabelecimentos.filter(e => {
-      return (e.nome.toLowerCase().includes(filtro.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()));
+      let filtrado: boolean;
+
+      filtrado = cidade && cidade.nome !== '-'
+        ? (e.cidade.nome.toLowerCase() === cidade.nome.toLowerCase() && e.cidade.uf.toLowerCase() === cidade.uf.toLowerCase())
+        : true;
+
+      filtrado = termo && filtrado
+        ? (e.nome.toLowerCase().includes(termo.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()))
+        : filtrado;
+
+      return filtrado;
     });
   }
 
-  pesquisar(termoPesquisa: string): void {
+  pesquisar(filtros: any): void {
     this.carregandoService.estaCarregando = true;
-    this.filtros.next(termoPesquisa);
+    this.filtros.next(filtros);
   }
 
   ordenar(a: Estabelecimento, b: Estabelecimento) {
-    if (a.uf === b.uf) {
+    if (a.cidade.uf === b.cidade.uf) {
       if (a.cidade < b.cidade) {
         return -1;
       }
@@ -122,10 +136,10 @@ export class EstabelecimentoService {
       }
       return 0;
     } else {
-      if (a.uf < b.uf) {
+      if (a.cidade.uf < b.cidade.uf) {
         return -1;
       }
-      if (b.uf < a.uf) {
+      if (b.cidade.uf < a.cidade.uf) {
         return 1;
       }
       return 0;

@@ -1,10 +1,11 @@
+import { Cidade } from './cidade.model';
+
 export class Estabelecimento {
   public timestamp;
   public url;
   public nome;
   public contato;
   public cidade;
-  public uf;
   public categoria;
   public img;
 
@@ -13,8 +14,7 @@ export class Estabelecimento {
     this.url = url;
     this.nome = nome;
     this.contato = contato;
-    this.cidade = cidade;
-    this.uf = uf;
+    this.cidade = new Cidade(cidade, uf);
     this.categoria = categoria;
     this.img = img;
   }

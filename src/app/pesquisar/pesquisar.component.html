@@ -61,8 +61,16 @@
       </div>
     </div>
     <div class="mb-4">
-      <select class="form-control form-control-lg">
-        <option *ngFor="let cidade of cidades">{{ cidade.nome }} - {{ cidade.uf }}</option>
+      <select
+        class="form-control form-control-lg"
+        [(ngModel)]="cidadeSelecionada"
+        (ngModelChange)="onChangeCidade()">
+        <option [value]="'-,-'">- Qualquer cidade -</option>
+        <option
+          *ngFor="let cidade of cidades"
+          [value]="cidade.nome + ',' + cidade.uf">
+          {{ cidade.nome }} - {{ cidade.uf }}
+        </option>
       </select>
     </div>
   </div>
