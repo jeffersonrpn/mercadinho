@@ -37,10 +37,10 @@ export class EstabelecimentoService {
         switchMap(estabelecimentos => this.filtros.pipe(
           debounceTime(400),
           map(filtros => this.filtrar(estabelecimentos, filtros))
-        ))
-        // tap(estabelecimentos => {
-        //   return estabelecimentos.sort((a, b) => 1);
-        // })
+        )),
+        tap(estabelecimentos => {
+          return estabelecimentos.sort((a, b) => this.ordenar(a, b));
+        })
       ).subscribe(data => {
         this.carregandoService.estaCarregando = false;
         this.estabelecimentosFiltrados.next(data);
@@ -77,7 +77,16 @@ export class EstabelecimentoService {
           cidades = cidades
             .filter((item, i, arr) => arr
               .findIndex(t => (t.nome === item.nome && t.uf === item.uf)) === i);
+          // Ordena estabelicimentos
           return { estabelecimentos, cidades };
+        }),
+        tap(data => {
+          return data.estabelecimentos.sort((a, b) => {
+            // if (a.uf === b.uf) {
+            //   return a.cidade - b.cidade;
+            // }
+            return b.nome - a.nome;
+          });
         }))
       .subscribe(data => {
         this.carregandoService.estaCarregando = false;
@@ -101,6 +110,26 @@ export class EstabelecimentoService {
   pesquisar(termoPesquisa: string): void {
     this.carregandoService.estaCarregando = true;
     this.filtros.next(termoPesquisa);
+  }
+
+  ordenar(a: Estabelecimento, b: Estabelecimento) {
+    if (a.uf === b.uf) {
+      if (a.cidade < b.cidade) {
+        return -1;
+      }
+      if (b.cidade < a.cidade) {
+        return 1;
+      }
+      return 0;
+    } else {
+      if (a.uf < b.uf) {
+        return -1;
+      }
+      if (b.uf < a.uf) {
+        return 1;
+      }
+      return 0;
+    }
   }
 
 }
