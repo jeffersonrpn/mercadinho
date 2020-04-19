@@ -128,13 +128,23 @@ export class EstabelecimentoService {
 
   ordenar(a: Estabelecimento, b: Estabelecimento) {
     if (a.cidade.uf === b.cidade.uf) {
-      if (a.cidade < b.cidade) {
-        return -1;
+      if (a.cidade.nome === b.cidade.nome) {
+        if (a.nome < b.nome) {
+          return -1;
+        }
+        if (b.nome < a.nome) {
+          return 1;
+        }
+        return 0;
+      } else {
+        if (a.cidade.nome < b.cidade.nome) {
+          return -1;
+        }
+        if (b.cidade.nome < a.cidade.nome) {
+          return 1;
+        }
+        return 0;
       }
-      if (b.cidade < a.cidade) {
-        return 1;
-      }
-      return 0;
     } else {
       if (a.cidade.uf < b.cidade.uf) {
         return -1;
