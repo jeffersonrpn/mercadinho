@@ -23,4 +23,8 @@ export class Estabelecimento {
     return 'https://res.cloudinary.com/jeffersonrpn/image/upload/mercadinho/' + this.img;
   }
 
+  getUrlCurta(): string {
+    return this.url.substring(0, 60).concat('...');
+  }
+
 }

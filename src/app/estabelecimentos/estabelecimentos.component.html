@@ -1,4 +1,8 @@
-<div class="loader" [hidden]="!carregandoService.estaCarregando">Carregando...</div>
+<div
+  class="loader"
+  [hidden]="!carregandoService.estaCarregando">
+  Carregando...
+</div>
 <p [hidden]="estabelecimentos.length == 0">
   <strong>{{ estabelecimentos.length }}</strong>
   estabelecimentos
@@ -7,7 +11,9 @@
   <div
     class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4"
     *ngFor="let estabelecimento of estabelecimentos">
-    <app-estabelecimento [estabelecimento]="estabelecimento"></app-estabelecimento>
+    <app-estabelecimento
+      [estabelecimento]="estabelecimento"
+      (click)="open(content, estabelecimento)"></app-estabelecimento>
   </div>
 </div>
 <div
@@ -15,3 +21,74 @@
   [hidden]="estabelecimentos.length > 0 || carregandoService.estaCarregando">
   <strong>Nenhum resultado encontrado.</strong>
 </div>
+
+<ng-template
+  #content
+  let-modal>
+  <div class="modal-header">
+    <h4
+      class="modal-title sr-only"
+      id="modal-estabelecimento-title">
+      {{ estabelecimentoSelecionado?.nome }}
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="rounded text-center">
+          <img
+            [src]="estabelecimentoSelecionado?.getImg()"
+            [alt]="estabelecimentoSelecionado?.nome"
+            width="150"
+            class="rounded marca">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h3 class="mt-4">{{ estabelecimentoSelecionado?.nome }}</h3>
+        <h5 class="text-muted">
+          {{ estabelecimentoSelecionado?.cidade.nome }} - {{ estabelecimentoSelecionado?.cidade.uf }}
+        </h5>
+
+        <p class="mt-4">
+          <a
+            [href]="estabelecimentoSelecionado?.url"
+            target="_blank">
+            {{ estabelecimentoSelecionado?.url }}
+          </a>
+        </p>
+
+        <p class="mt-4">
+          <a
+            [href]="estabelecimentoSelecionado?.url"
+            class="btn btn-primary"
+            target="_blank">
+            Visitar
+          </a>
+          &nbsp;
+          <a
+            [href]="'https://wa.me/?text=' + 'Conheça ' + estabelecimentoSelecionado?.nome + ' ' + estabelecimentoSelecionado?.url"
+            class="btn btn-outline-primary"
+            target="_blank">
+            <span class="icon-share-2"></span>
+          </a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close()">
+      Fechar
+    </button>
+  </div>
+</ng-template>
