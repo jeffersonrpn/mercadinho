@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap");
 
 // Carrega Bootstrap
 @import "../node_modules/bootstrap/scss/functions";
@@ -11,6 +11,23 @@
 
 body {
   padding-top: 4.5rem;
+}
+
+footer {
+  background-color: $primary;
+  color: $white;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+
+  > a:link,
+  a:visited,
+  a:active,
+  a:hover {
+    color: $white;
+  }
 }
 
 .navbar-brand {
@@ -52,9 +69,15 @@ body {
 }
 
 @keyframes animationPop {
-  0%   {transform: scale(0.5)}
-  75%  {transform: scale(1.1)}
-  100% {transform: scale(1)}
+  0% {
+    transform: scale(0.5);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .intro {
@@ -64,7 +87,7 @@ body {
 .loader,
 .loader:before,
 .loader:after {
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   width: 2.5em;
   height: 2.5em;
   -webkit-animation-fill-mode: both;
@@ -86,7 +109,7 @@ body {
 }
 .loader:before,
 .loader:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
 }

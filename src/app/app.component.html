@@ -1,4 +1,18 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <router-outlet></router-outlet>
+<div class="app-container">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
+<footer>
+  <div class="container footer-texto">
+    Mercado Solidário é uma iniciativa independente de professores e alunos de
+    <a
+      href="http://www.computacao.ufcg.edu.br/"
+      target="_blank">
+      Computação@UFCG
+    </a>.
+    Conheça nossa
+    <a [routerLink]="['/voluntarios']">Equipe Solidária</a>.
+  </div>
+</footer>
