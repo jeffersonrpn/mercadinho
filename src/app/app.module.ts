@@ -15,6 +15,8 @@ import { DepoimentosComponent } from './depoimentos/depoimentos.component';
 import { DepoimentoComponent } from './depoimento/depoimento.component';
 import { VoluntariosComponent } from './voluntarios/voluntarios.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { PrecisaDeUmSiteComponent } from './precisa-de-um-site/precisa-de-um-site.component';
+import { QueroFazerParteDaEquipeComponent } from './quero-fazer-parte-da-equipe/quero-fazer-parte-da-equipe.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { InicioComponent } from './inicio/inicio.component';
     DepoimentosComponent,
     DepoimentoComponent,
     VoluntariosComponent,
-    InicioComponent
+    InicioComponent,
+    PrecisaDeUmSiteComponent,
+    QueroFazerParteDaEquipeComponent
   ],
   imports: [
     BrowserModule,

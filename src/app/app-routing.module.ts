@@ -5,6 +5,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { EstabelecimentosComponent } from './estabelecimentos/estabelecimentos.component';
 import { DepoimentosComponent } from './depoimentos/depoimentos.component';
 import { VoluntariosComponent } from './voluntarios/voluntarios.component';
+import { PrecisaDeUmSiteComponent } from './precisa-de-um-site/precisa-de-um-site.component';
+import { QueroFazerParteDaEquipeComponent } from './quero-fazer-parte-da-equipe/quero-fazer-parte-da-equipe.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,14 @@ const routes: Routes = [
   {
     path: 'voluntarios',
     component: VoluntariosComponent
+  },
+  {
+    path: 'precisa-de-um-site',
+    component: PrecisaDeUmSiteComponent
+  },
+  {
+    path: 'quero-fazer-parte-da-equipe',
+    component: QueroFazerParteDaEquipeComponent
   }
 ];
 
