@@ -1,5 +1,6 @@
 const express = require("express");
 const forceSsl = require('force-ssl-heroku');
+const path = require("path");
 
 const app = express();
 app.use(forceSsl);
